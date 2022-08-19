@@ -3,7 +3,6 @@ import supervisely as sly
 import pandas as pd
 
 
-# The function to write to google sheet
 def write_to_gsheet(service_file_path, spreadsheet_id, sheet_name, data_df):
     """
     this function takes data_df and writes it under spreadsheet_id
