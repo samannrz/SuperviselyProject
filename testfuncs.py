@@ -41,16 +41,25 @@ for pr in prs:
             for vd in vds:
                 # print('%d : Total number of frames for %s'%(len(vd.frames_to_timecodes),vd.name))
                 ans = api.video.annotation.download(vd.id)
-                ann = sly.VideoAnnotation.from_json(ans)
+                #ann = sly.VideoAnnotation.from_json(ans)
                 nframes = ans['framesCount'] + nframes  # count Total number of frames in the dataset
                 nAnnframes = nAnnframes + len(ans['frames'])  # count n of annotatedframes in the dataset
                 frames = ans['frames']
                 for fr in frames:
                     objIds = np.array([])
                     for fig in fr['figures']:
-                        print(fig['video_object'])
-                    #     objIds = np . append(objIds, fig['objectId'])
-                    # print(np.unique(objIds))
+                        #print(fig['video_object'])
+                        objIds = np . append(objIds, fig['objectId'])
+                    listkeys = np.unique(objIds)
+                    for i in listkeys:
+                        if i exists in lisk:
+                            lisk(lisk==i) += 1
+                        else:
+                            lisk.append
+
+
+                    mydict = dict(zip(listkeys, range(len(listkeys))))
+                    print(mydict)
 
             prList.append(pr.name)
             prTypeList.append(pr.type)
