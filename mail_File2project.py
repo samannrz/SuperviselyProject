@@ -9,10 +9,11 @@ def find(s, ch):
     return [i for i, ltr in enumerate(s) if ltr == ch]
 
 
-## Definition of Parameters
+# def main():
+# Definition of Parameters
 # Saman's Token
 mytoken = 'jXCVEbySH8moyTXLihkoE1k9UX4fTMDUYkHMJgUoIzx0EnyS5outN8de6UvUCjdGfRUr8D553l8MhTLQkzDOm22bKTsJulgDiGzy2Z4yYEmFmhcsL8k37Af837qXb2UO'
-path = "C://Users/SurgAR-User/OneDrive/Documents/Surgar/Female/Rigas first Results/BAD"
+path = "C://Users/SurgAR-User/OneDrive/Documents/Surgar/Female/Rigas first Results/BAD2/BAD"
 teamName = 'Endometriosis'
 workspaceName = 'Data annotation'
 
@@ -61,7 +62,7 @@ for fl in myfiles:
 data_df = pd.DataFrame(
     {'Project': prList, 'dataset': dsList, 'Video Name': nameList, 'Frame': frList})
 sfpath = 'C:/Users/SurgAR-User/OneDrive/Documents/Saman/mypythonfolder/supervisely-python-sdk-example/my-gpysheets-3d8d13442005.json'
-sheetID = '1XEX4axQ96cSP7tprdbxL6TewmICepo4fowguvG-hTwc'
-sheetName = teamName  + workspaceName
+sheetID = '17YidEraDYGnAcXWQvVQDKI07c6cUJkN8dYM54ZTrgr8'
+sheetName = teamName + workspaceName
 data_df.to_excel('Corrections.xlsx', sheetName)
 write_to_gsheet(sfpath, sheetID, sheetName, data_df)
