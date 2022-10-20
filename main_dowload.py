@@ -1,9 +1,14 @@
+# This script is to download videos from a workspace to a local path
+
 import os
 import supervisely_lib as sly
 
+# Define the parameters
 #src_project_name = 'Endometriosis_WS1'
 project_id = 595
 WORKSPACE_ID = 33
+
+##########################
 mytoken = 'jXCVEbySH8moyTXLihkoE1k9UX4fTMDUYkHMJgUoIzx0EnyS5outN8de6UvUCjdGfRUr8D553l8MhTLQkzDOm22bKTsJulgDiGzy2Z4yYEmFmhcsL8k37Af837qXb2UO'
 api = sly.Api(server_address="http://surgai-surgery.com", token=mytoken)
 try:

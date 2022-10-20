@@ -5,10 +5,10 @@ import supervisely_lib as sly
 from supervisely.task import progress
 
 # Set the parameters firs
-project_id  =  #which project you are working? #(996 for smoke) 
-dataset =  #the name of the dataset. It can exist or nor (like 'Saman' for smoke)
-#project_name = 'Smoke Annotation' 
-
+#Write the project id
+project_id  = 996 #which project you are working? #(996 for smoke)
+dataset =  'Saman' #the name of the dataset. It can exist or nor (like 'Saman' for smoke)
+vidpath = '/home/saman/Downloads/uploadfolder/' #the path of your videos
 ##########################
 mytoken = 'jXCVEbySH8moyTXLihkoE1k9UX4fTMDUYkHMJgUoIzx0EnyS5outN8de6UvUCjdGfRUr8D553l8MhTLQkzDOm22bKTsJulgDiGzy2Z4yYEmFmhcsL8k37Af837qXb2UO'
 api = sly.Api(server_address="http://surgai-surgery.com", token=mytoken)
