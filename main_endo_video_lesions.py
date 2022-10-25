@@ -39,7 +39,7 @@ def getvidlist(teamName,workspaceName):
         'Ovarian.Endometrioma': 6,
         'Ovarian.Chocolate Fluid': 7,
         'Deep Endometriosis': 8,
-        'Ovarian.Endometrioma[B]' : 9
+        'Ovarian.Endometrioma[B]': 9
     }
     # get a list of supervisely video names with their corresponding project and dataset name
     for pr in prs:
@@ -55,6 +55,7 @@ def getvidlist(teamName,workspaceName):
                 lesions = [0] * 10
                 for i in range(len(objs)):
                     lesions[lesiondic[objs[i]['classTitle']]] = 1
+
                 lesionList.append(lesions)
     return projects, datasets, nameList, lesionList
 
@@ -68,7 +69,8 @@ def main():
         'Superficial.Subtle': 5,
         'Ovarian.Endometrioma': 6,
         'Ovarian.Chocolate Fluid': 7,
-        'Deep Endometriosis': 8
+        'Deep Endometriosis': 8,
+        'Ovarian.Endometrioma[B]': 9
     }
     prList, dsList, nameList, lesionList = getvidlist('Endometriosis', 'Data annotation')
 
@@ -86,8 +88,6 @@ def main():
     sheetName = 'Endometriosis'
     data_df.to_excel('WP7.xlsx', sheetName)
     # write_to_gsheet(sfpath, sheetID, sheetName, data_df)
-
-
 
 
 if __name__== '__main__':
