@@ -4,6 +4,8 @@ import pandas as pd
 # import os
 from functions import write_to_gsheet
 # import openpyxl
+import datetime
+
 
 
 def find(s, ch):
@@ -27,22 +29,10 @@ def getvidlist(teamName,workspaceName):
     datasets = []
 
     # lesions = []
-    lesionList = []
+    annot = []
     jj = 0
 
-    lesiondic = {
-        'Adhesions.Dense': 0,
-        'Adhesions.Filmy': 1,
-        'Superficial.White': 2,
-        'Superficial.Black': 3,
-        'Superficial.Red': 4,
-        'Superficial.Subtle': 5,
-        'Ovarian.Endometrioma': 6,
-        'Ovarian.Chocolate Fluid': 7,
-        'Deep Endometriosis': 8,
-        'Ovarian.Endometrioma[B]': 9
-    }
-    # get a list of workspace video names with their corresponding project and dataset name
+      # get a list of workspace video names with their corresponding project and dataset name
     for pr in prs:
         dss = api.dataset.get_list(pr.id)
         for ds in dss:
@@ -53,43 +43,30 @@ def getvidlist(teamName,workspaceName):
                 datasets.append(ds.name)
                 ans = api.video.annotation.download(vd.id)
                 objs = ans['objects']
-                lesions = [0] * 10
-                for i in range(len(objs)):
-                    lesions[lesiondic[objs[i]['classTitle']]] = 1
 
-                lesionList.append(lesions)
-    return projects, datasets, nameList, lesionList
+                if len(objs):
+                    annot.append(1)
+                else:
+                    annot.append(0)
+
+
+
+
+    return projects, datasets, nameList, annot
 
 def main():
-    lesiondic = {
-        'Adhesions.Dense': 0,
-        'Adhesions.Filmy': 1,
-        'Superficial.White': 2,
-        'Superficial.Black': 3,
-        'Superficial.Red': 4,
-        'Superficial.Subtle': 5,
-        'Ovarian.Endometrioma': 6,
-        'Ovarian.Chocolate Fluid': 7,
-        'Deep Endometriosis': 8,
-        'Ovarian.Endometrioma[B]': 9
-    }
     teamName = 'Endometriosis'
     workspaceName = 'Incision annotation'
     prList, dsList, nameList, lesionList = getvidlist(teamName, workspaceName)
 
     data_df = pd.DataFrame(
-             {'Video Name': nameList, 'Project': prList, 'dataset': dsList})
+             {'Video Name': nameList, 'Project': prList, 'dataset': dsList , 'annotated': lesionList})
 
-    lespd = pd.DataFrame(lesionList)
-    i =0
-    for les in lesiondic:
-        data_df[les] = lespd.loc[:, lesiondic[les]]
-        i+=1
 
     sfpath = 'keycode/my-gpysheets-3d8d13442005.json'
     sheetID = '10nt-qCCI6KUOd-dE-Iq1e3xXd7gkFV-f776dp25oGmQ'
-    sheetName = teamName + '_' + workspaceName
-    data_df.to_excel('WP7.xlsx', sheetName) #locally saves to the current path
+    sheetName = teamName + '_' + workspaceName + str(datetime.date.today())
+    data_df.to_excel('incision.xlsx', sheetName) #locally saves to the current path
     write_to_gsheet(sfpath, sheetID, sheetName, data_df)
 
 

@@ -3,6 +3,7 @@ import supervisely as sly
 import pandas as pd
 
 
+# this function is from https://stackoverflow.com/questions/62917910/how-can-i-export-pandas-dataframe-to-google-sheets-using-python
 def write_to_gsheet(service_file_path, spreadsheet_id, sheet_name, data_df):
     """
     this function takes data_df and writes it under spreadsheet_id
@@ -19,10 +20,8 @@ def write_to_gsheet(service_file_path, spreadsheet_id, sheet_name, data_df):
     wks_write.set_dataframe(data_df, (1, 1), encoding='utf-8', fit=True)
     wks_write.frozen_rows = 1
 
-def pdStats (teamName,workspaceName):
+def pdStats (mytoken,teamName,workspaceName):
 
-    # Saman's Token
-    mytoken = 'jXCVEbySH8moyTXLihkoE1k9UX4fTMDUYkHMJgUoIzx0EnyS5outN8de6UvUCjdGfRUr8D553l8MhTLQkzDOm22bKTsJulgDiGzy2Z4yYEmFmhcsL8k37Af837qXb2UO'
     # start using supervisely API
     api = sly.Api(server_address="http://surgai-surgery.com", token=mytoken)
 
@@ -65,6 +64,7 @@ def pdStats (teamName,workspaceName):
                 nframesList.append(nframes)
                 nAnnframesList.append(nAnnframes)
         elif pr.type == 'images':
+            continue
             for ds in dss:  # going  through datasets to collect their statistics
                 imgs = api.image.get_list(ds.id)
                 nframes = 0
@@ -98,5 +98,6 @@ def pdStats (teamName,workspaceName):
     data_df = pd.DataFrame(
         {prCol: prList, prTypeCol: prTypeList, dsCol: dsList, vdCol: vdList, nfCol: nframesList,
          nAnnCol: nAnnframesList})
-    print(data_df)
+    # print(data_df)
     return data_df
+

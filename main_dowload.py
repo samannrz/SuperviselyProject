@@ -5,8 +5,8 @@ import supervisely_lib as sly
 
 # Define the parameters
 #src_project_name = 'Endometriosis_WS1'
-project_id = 595
-WORKSPACE_ID = 33
+project_id = 1061
+WORKSPACE_ID = 256
 
 ##########################
 mytoken = 'jXCVEbySH8moyTXLihkoE1k9UX4fTMDUYkHMJgUoIzx0EnyS5outN8de6UvUCjdGfRUr8D553l8MhTLQkzDOm22bKTsJulgDiGzy2Z4yYEmFmhcsL8k37Af837qXb2UO'
@@ -28,6 +28,6 @@ if project.type != str(sly.ProjectType.VIDEOS):
 
 dest_dir  = os.path.join(os.getcwd(),src_project_name)
 sly.fs.mkdir(dest_dir)
-
+print(dest_dir)
 sly.download_video_project(api, project.id, dest_dir, dataset_ids=None, log_progress=True)
 sly.logger.info('Project {!r} has been successfully downloaded'.format(src_project_name))
