@@ -5,8 +5,8 @@ import supervisely_lib as sly
 
 # Define the parameters
 #src_project_name = 'Endometriosis_WS1'
-project_id = 1061
-WORKSPACE_ID = 256
+project_id = 760
+WORKSPACE_ID = 33
 
 ##########################
 mytoken = 'jXCVEbySH8moyTXLihkoE1k9UX4fTMDUYkHMJgUoIzx0EnyS5outN8de6UvUCjdGfRUr8D553l8MhTLQkzDOm22bKTsJulgDiGzy2Z4yYEmFmhcsL8k37Af837qXb2UO'
